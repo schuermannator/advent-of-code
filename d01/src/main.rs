@@ -1,7 +1,9 @@
 use std::io::{self, Read};
 use std::collections::HashSet;
 
-fn main() -> io::Result<()> {
+type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
+
+fn main() -> Result<()> {
     let mut buffer = String::new();
     io::stdin().read_to_string(&mut buffer)?;
 
@@ -10,17 +12,18 @@ fn main() -> io::Result<()> {
     Ok(())
 }
 
-fn p1(b: &str) -> io::Result<()> {
+fn p1(b: &str) -> Result<()> {
     let mut s = 0;
     for line in b.lines() {
-        s += line.parse::<i32>().expect("unable to parse");
+        let i: i32 = line.parse()?;
+        s += i;
     }
 
     println!("{}", s);
     Ok(())
 }
 
-fn p2(b: &str) -> io::Result<()> {
+fn p2(b: &str) -> Result<()> {
     let mut d = HashSet::new();
     let mut s = 0;
     d.insert(s);

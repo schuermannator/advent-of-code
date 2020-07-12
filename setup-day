@@ -15,3 +15,5 @@ cargo new --bin "$name"
 mkdir "$name/input"
 echo -en "all:\n\tcargo run --release < input/input.txt" >> "$name/Makefile"
 cp .gitignore "$name/.gitignore"
+
+echo -en "\n$name:\n\t+\$(MAKE) -C \$@\n.PHONY: $name" >> Makefile
