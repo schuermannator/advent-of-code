@@ -13,7 +13,7 @@ fi
 name="$(printf "d%02d" "$1")"
 cargo new --bin "$name"
 mkdir "$name/input"
-echo -en "all:\n\tcargo run --release < input/input.txt" >> "$name/Makefile"
+echo -en "all:\n\tcargo run --release < input/input.txt\n\tcargo clippy -- -D warnings" >> "$name/Makefile"
 cp .gitignore "$name/.gitignore"
 
 echo -en "\n$name:\n\t+\$(MAKE) -C \$@\n.PHONY: $name" >> Makefile

@@ -28,7 +28,7 @@ fn p2(b: &str) -> Result<()> {
     let mut s = 0;
     d.insert(s);
     // could just loop { also
-    for line in b.lines().into_iter().cycle() {
+    for line in b.lines().cycle() {
         let v = line.parse::<i32>().expect("unable to parse");
         s += v;
         if !d.insert(s) {
