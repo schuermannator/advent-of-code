@@ -8,3 +8,6 @@ d02:
 d03:
 	+$(MAKE) -C $@
 .PHONY: d03
+d04:
+	+$(MAKE) -C $@
+.PHONY: d04
