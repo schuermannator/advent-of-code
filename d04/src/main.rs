@@ -145,11 +145,6 @@ fn p2(buf: &str) -> Result<()> {
     Ok(())
 }
 
-// fn sorter(input: Vec<&str>) {
-//     let re = Regex::new(r"\[.*\]").unwrap();
-//     input.sort_by(|a, b| re.captures(a).unwrap()[0].partial_cmp(&re.captures(b).unwrap()[0]).unwrap());
-// }
-
 fn parse_line(line: &str) -> Result<LogLine> {
     // TODO move regex compile outside of loop
     let guard_re = Regex::new(r"#(\d+)")?;
