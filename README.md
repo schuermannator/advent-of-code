@@ -1,14 +1,18 @@
-# AoC 2018
-Advent of Code 2018 implemented in Rust.  
+# Advent of Code
+My advent of Code solutions implemented in Rust.
+- [ ] 2018
+- [ ] 2019
 
+## Running
+From each year (inside `2018/` etc.):
 ```
 $ make d01
 ```
-
+or
 ```
 $ cd d01
 $ cargo run --release < input/input.txt
 ```
-great solutions: https://github.com/BurntSushi/advent-of-code
-Todo: rename advent-of-code and make aoc2018 and aoc2019, etc.
 
+## Ref
+[BurntSushi's AoC Solutions](https://github.com/BurntSushi/advent-of-code)
