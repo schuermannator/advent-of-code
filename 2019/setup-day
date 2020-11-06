@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# from https://github.com/BurntSushi/advent-of-code
+if [ $# != 1 ]; then
+    echo "Usage: $(basename "$0") <day-number>" >&2
+    exit 1
+fi
+# if [ ! -d .git ]; then
+#     echo "must be run from root of advent-of-code repo" >&2
+#     exit 1
+# fi
+
+name="$(printf "d%02d" "$1")"
+cargo new --bin "$name"
+mkdir "$name/input"
+echo -en "all:\n\tcargo run --release < input/input.txt\n\tcargo clippy -- -D warnings" >> "$name/Makefile"
+cp .gitignore "$name/.gitignore"
+
+echo -en "\n$name:\n\t+\$(MAKE) -C \$@\n.PHONY: $name" >> Makefile
