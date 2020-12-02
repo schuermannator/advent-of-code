@@ -10,17 +10,12 @@ fn main() -> io::Result<()> {
     Ok(())
 }
 
+// brute force
 fn p1(input: &str) -> io::Result<i32> {
     let nums: Vec<i32> = input
         .lines()
         .map(|l| l.parse::<i32>().expect("failed on parse i32"))
         .collect();
-    // nums.sort_unstable();
-    // for i in 0..nums.len() {
-    //     let n = nums[i];
-    //     for j in nums.len()
-    // }
-    // Ok(5)
     for i in 0..nums.len() {
         let n = nums[i]; 
         for j in 0..nums.len() {
@@ -36,17 +31,12 @@ fn p1(input: &str) -> io::Result<i32> {
     Ok(-1)
 }
 
-fn p2(input: &str) -> io::Result<i32> {
+#[allow(dead_code)]
+fn p2_bf(input: &str) -> io::Result<i32> {
     let nums: Vec<i32> = input
         .lines()
         .map(|l| l.parse::<i32>().expect("failed on parse i32"))
         .collect();
-    // nums.sort_unstable();
-    // for i in 0..nums.len() {
-    //     let n = nums[i];
-    //     for j in nums.len()
-    // }
-    // Ok(5)
     for i in 0..nums.len() {
         let n = nums[i]; 
         for j in 0..nums.len() {
@@ -62,6 +52,26 @@ fn p2(input: &str) -> io::Result<i32> {
                 if n + n2 + n3 == 2020 {
                     return Ok(n * n2 * n3);
                 }
+            }
+        }
+    }
+    Ok(-1)
+}
+
+fn p2(input: &str) -> io::Result<i32> {
+    let nums: Vec<i32> = input
+        .lines()
+        .map(|l| l.parse::<i32>().expect("failed on parse i32"))
+        .collect();
+    for n1 in &nums {
+        let needles_sum = 2020 - n1;
+        for n2 in &nums {
+            let needle = needles_sum - n2;
+            if n1 == n2 {
+                continue;
+            }
+            if let Ok(_) = nums.binary_search(&needle) {
+                return Ok(n1 * n2 * needle);
             }
         }
     }
