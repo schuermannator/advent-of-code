@@ -1,5 +1,5 @@
 //! Advent of Code 2020 Day 4
-use std::io::{self, Read};
+use std::{str::FromStr, io::{self, Read}};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut buf = String::new();
@@ -13,15 +13,22 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 struct Seat(u32, u32);
 
+impl FromStr for Seat {
+    type Err = (); // TODO add errors propogated from get_row/get_col
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Ok(Seat(get_row(s), get_col(s)))
+    }
+}
+
 fn p1(input: &str) -> Result<u32, &str> {
-    let seats = input.lines().map(|l| parse_seat(l));
+    let seats = input.lines().map(|l| l.parse::<Seat>().expect("failed to parse Seat"));
     let seat_ids = seats.map(|Seat(r, c)| (r * 8 + c));
     seat_ids.max().ok_or("couldn't find max")
 }
 
 fn p2(input: &str) -> Result<u32, &str> {
+    let seats = input.lines().map(|l| l.parse::<Seat>().expect("failed to parse Seat"));
     let mut spots = [false; 1024];
-    let seats = input.lines().map(|l| parse_seat(l));
     let seat_ids = seats.map(|Seat(r, c)| (r * 8 + c));
     for id in seat_ids {
         spots[id as usize] = true;
@@ -77,8 +84,4 @@ fn get_col(s: &str) -> u32 {
     }
     println!("ERROR"); // TODO
     0
-}
-
-fn parse_seat(s: &str) -> Seat {
-    Seat(get_row(s), get_col(s))
 }
