@@ -1,4 +1,4 @@
-//! Advent of Code 2020 Day 4
+//! Advent of Code 2020 Day 5
 use std::{str::FromStr, io::{self, Read}};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {

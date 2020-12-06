@@ -14,3 +14,6 @@ d04:
 d05:
 	+$(MAKE) -C $@
 .PHONY: d05
+d06:
+	+$(MAKE) -C $@
+.PHONY: d06
