@@ -29,3 +29,9 @@ d09:
 d10:
 	+$(MAKE) -C $@
 .PHONY: d10
+d11:
+	+$(MAKE) -C $@
+.PHONY: d11
+d12:
+	+$(MAKE) -C $@
+.PHONY: d12
